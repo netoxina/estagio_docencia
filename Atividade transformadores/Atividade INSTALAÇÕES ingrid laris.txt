@@ -1,0 +1,334 @@
+QUESTÃO 1:
+
+%% Solução Q1
+disp("LETRA a)")
+Vg= 120 %V
+Rf= 512 %ohms
+Rc= 8 %ohms
+Il= Vg/(Rf+Rc) %A
+Vc= Il*Rc %V
+P= (Il^2)*Rc %W
+
+disp("LETRA b)")
+a=8/1 %adimensional
+Rc1=Rc*(a^2) %ohms
+Req= Rf+Rc1 %ohms
+Ieq= Vg/Req %A
+Ic1= Ieq*a %A
+Vc1= Ic1*Rc %V
+P= (Ic1^2)*Rc %W
+-----------------------------------------------------------------------------------------------------------------------------
+
+QUESTÃO 2:
+
+%% Solução Q2
+disp("LETRA a)")
+Pa=10 %W
+Pf= Pa*4 %W
+
+disp("LETRA b)")
+V=70,7 %V
+Ze= V^2/Pf %ohms
+
+disp("LETRA c)")
+Za=8 %ohms
+a= Ze/(Za) %ohms
+
+disp("LETRA d)")
+Va=sqrt(Pa*Za) %V
+-----------------------------------------------------------------------------------------------------------------------------
+
+QUESTÃO 3:
+
+disp("LETRA a)")
+a= 1/5
+Ip= 2 %A
+Zc= 2 %ohms
+Ic= Ip*a %A
+Vc= Ic*Zc %V
+
+disp("LETRA b)")
+Rp= a^2*Zc % ohms
+---------------------------------------------------------------------------------------------------------------------------
+
+QUESTÃO 4:
+
+% Solução Q4
+disp("LETRA a)")
+Vvz= 240 %V
+Ivz= 2,1 %A
+Pvz= 50 %W
+Vcc= 47 %V
+Icc= 6,0 %A
+Pcc= 160 %W
+a=4800/240 %adimensional
+
+disp("*Circuito equivalente referido ao lado de alta tensão:")
+Uvz= acos(Pvz/(Vvz*Ivz)) %angulo de impedância (°)
+Ye= Ivz/Vvz %admitância de excitanção
+Rcs= 1/(Ye*cos(Uvz)) %ohms
+Xms= 1/(Ye*sin(Uvz)) %ohms
+
+Ucc= acos(Pcc/(Vcc*Icc))
+Zse= Vcc/Icc %Impedância em série equivalente
+
+%Elementos em série referidos ao lado primário%
+Req= Zse*cos(Ucc) %ohms
+Xeq= Zse*sin(Ucc) %ohms
+
+%Circuito equivalente simplificado referente ao lado primário%
+Rcp= a^2*Rcs %ohms
+Xmp= a^2*Xms %ohms
+disp("*Circuito equivalente referido ao lado de baixa tensão:")
+Rc= Rcp/a^2 %ohms
+Xm= Xmp/a^2 %ohms
+Req2= Req/a^2 %ohms
+Xeq2= Xeq/a^2 %ohms
+
+disp("LETRA b)")
+S= 10000 %VA
+Vs=240 %V
+Is= S/Vs %A
+Vp= 240+Req2*Is+Xeq2*Is*j %V
+RT= ((abs(Vp)-Vs)/Vs)*100 %
+----------------------------------------------------------------------------------------------------------------------------
+QUESTÃO 5:
+
+disp("LETRA a)")
+Vvz= 240 %V
+Ivz= 8,75 %A
+Pvz= 480 %W
+Vcc= 600 %V
+Icc= 100000/12000 %A
+Pcc= 1200 %W
+a=4800/240 %adimensional
+
+disp("*Circuito equivalente referido ao lado de alta tensão:")
+Uvz= acos(Pvz/(Vvz*Ivz)) %angulo de impedância (°)
+Ye= Ivz/Vvz %admitância de excitanção
+Rcs= 1/(Ye*cos(Uvz)) %ohms
+Xms= 1/(Ye*sin(Uvz)) %ohms
+
+Ucc= acos(Pcc/(Vcc*Icc))
+Zse= Vcc/Icc %Impedância em série equivalente
+
+%Elementos em série referidos ao lado primário%
+Req= Zse*cos(Ucc) %ohms
+Xeq= Zse*sin(Ucc) %ohms
+
+%Circuito equivalente simplificado referente ao lado primário%
+Rcp= a^2*Rcs %ohms
+Xmp= a^2*Xms %ohms
+disp("*Circuito equivalente referido ao lado de baixa tensão:")
+Rc= Rcp/a^2 %ohms
+Xm= Xmp/a^2 %ohms
+Req2= Req/a^2 %ohms
+Xeq2= Xeq/a^2 %ohms
+
+disp("LETRA b)")
+S= 100000 %VA
+Vs=240 %V
+Is= S/Vs %A
+Vp= 240+ Req2*(Is*cos (36.9*pi/180)-Is*sin (36.9*pi/180)*j) +Xeq2*(Is*cos (36.9*pi/180)-Is*sin  (36.9*pi/180)*j)*j %V
+RT= ((abs(Vp)-Vs)/Vs)*100 %Regulação de tensão (%)%
+---------------------------------------------------------------------------------------------------------------------------
+QUESTÃO 6:
+
+V1=240 %tensão de baixa
+V2=2400 %tensão de alta
+a = V2/V1 %relação
+Poc=254 
+FP=0.15
+Rc = V1^2/Poc  %estima-se Rc a partir Potência ativa do ensaio
+Soc = Poc/0.15 %encontrando a potência aparente dispersa no ramo de magnetização
+Qoc = sqrt(Soc^2 - Poc^2) % encontrando a potência reativa
+Xm = V1^2/Qoc  %estima-se Xm a partir Potência ativa do ensaio
+Zoc = (Rc^(-1) - j*(Xm)^-1)^-1 %impedância total vista do lado de baixa
+% P1 = V1²/Z1 = V2²/Z2 = P2  -> V1²/Z1 = a²V1²/Z2
+% cancelando o termo V1 -> Z1 = Z2/(a²) -> Z2 = Z1*a²
+Zocs = Zoc*a^2  %rebatendo
+Ioc_s = 2400/Zocs %corrente de circuito aberto no lado de alta tensão
+-----------------------------------------------------------------------------------------------------------------------------
+QUESTÃO 7
+
+Vvz= 250000/16 %V
+Ivz= 16 %A
+Pvz= 1200 %W
+Vcc= 600 %V
+Icc= 250000/24200 %A
+Pcc= 1700 %W
+a=24200/220 %adimensional
+
+disp("*Circuito equivalente referido ao lado de alta tensão:")
+Uvz= acos(Pvz/(Vvz*Ivz)) %angulo de impedância (°)
+Ye= Ivz/Vvz %admitância de excitanção
+Rcs= 1/(Ye*cos(Uvz)) %ohms
+Xms= 1/(Ye*sin(Uvz)) %ohms
+
+Ucc= acos(Pcc/(Vcc*Icc))
+Zse= Vcc/Icc %Impedância em série equivalente
+
+%Elementos em série referidos ao lado primário%
+Req= Zse*cos(Ucc) %ohms
+Xeq= Zse*sin(Ucc) %ohms
+
+%Circuito equivalente simplificado referente ao lado primário%
+Rcp= a^2*Rcs %ohms
+Xmp= a^2*Xms %ohms
+disp("*Circuito equivalente referido ao lado de baixa tensão:")
+Rc= Rcp/a^2 %ohms
+Xm= Xmp/a^2 %ohms
+Req2= Req/a^2 %ohms
+Xeq2= Xeq/a^2 %ohms
+
+disp("Regulação de tensão")
+S= 10000 %VA
+Vs=240 %V
+Is= S/Vs*0.85 %A
+Vp= 240+ Req2*(Is*cos (41.51*pi/180)-Is*sin (41.51*pi/180)*j) +Xeq2*(Is*cos (41.51*pi/180)-Is*sin  (41.51*pi/180)*j)*j %V
+RT= ((abs(Vp)-Vs)/Vs)*100 %Regulação de tensão (%)%
+----------------------------------------------------------------------------------------------------------------------------
+QUESTÃO 8:
+
+disp("letra a)")
+Rs= 0.005 %ohms
+Xs= 0.006 %ohms
+Rc= 50000 %ohms
+Xm= 10000 %ohms
+
+disp("letra b)")
+Vpu= 277/277 %V
+Ib1= 100000/277 %A
+Zb1= 277/Ib1 %ohms
+Ib2= 10000/8000 %A
+Zb2= 8000/Ib2 %ohms
+Zppu= (5+6j)/Zb1
+Zspu= (0.005+0.006j)/ Zb2
+
+disp("letra c)")
+Ve= 8000 %V
+Is= 100000/277 %A
+Vp= 277+ Rs*(Is*cos (39.2*pi/180)-Is*sin (39.2*pi/180)*j) +Xs*(Is*cos (39.2*pi/180)-Is*sin  (39.2*pi/180)*j)*j %V
+RT= ((abs(Vp)-277)/277)*100 %Regulação de tensão (%)%
+
+disp("letra d)")
+a=8000/277
+Pcu= (Is^2)*Rs %Perdas no cobre (W)
+Pn= (abs(Vp^2))/(Rc/a^2) %Perdas no nucleo (W)
+
+disp("letra e)")
+Ps= 277*Is*cos(39.2*pi/180) %W
+n= (Ps/(Pcu+Pn+Ps))*100 %Rendimento(%)
+---------------------------------------------------------------------------------------------------------------------------
+QUESTAO 9:
+
+a=0.5
+Vs= 282.8/sqrt(2) %V
+Is= 7.07/sqrt(2) %A
+Vs2= a*Vs %V
+Is2= Is/a %A
+Is21= Is2*cos(36.87*pi/180)+Is2*sin(36.87*pi/180)*j
+Vp= Vs2+Is2*(0.2+0.8*j)
+Ic=Vp/300
+Im= Vp/(100*j)
+Iex= Ic+Im
+Ip= Is21+Iex %Corrente do Primario (A)
+abs(Ip)
+abs(Vp)
+Vr= (abs(Vp)-Vs2)/Vs2 %Regulação de tensão (V)
+Pi= abs(Vp)*abs(Ip)*cos(42.8*pi/180)
+Po= Vs*Is*cos(36.87*pi/180)
+n= (Po/Pi)*100 %rendimento
+--------------------------------------------------------------------------------------------------------------------------
+QUESTÃO 10:
+
+disp("letra a)")
+Vvz= 115
+Ivz= 0.11
+Pvz= 3.9
+Yexm= Ivz/Vvz
+teta= acos((Pvz/(Ivz*Vvz))*pi/180) %angulo(°)
+Yex= Yexm*cos(teta)-Yexm*sin(teta)*j
+Rc= 1/(Yexm*cos(teta))
+Xm= 1/(Yexm*sin(teta))
+%Curto circuito5
+Vcc= 17.1
+Icc= 8.7
+Pcc= 38.1
+Zeqm= Icc/Vcc
+teta= teta= acos((Pcc/(Icc*Vcc))*pi/180) %angulo(°)
+Zeq= Yexm*cos(teta)-Yexm*sin(teta)*j
+Req= 1/(Yexm*cos(teta))
+Xeq= 1/(Yexm*sin(teta))
+
+%Para chegar ao circuito equivalente de baixa tensão basta dividir as impedâncias por "a"5
+
+a=230/115
+Reqs= Req/a^2
+Xeqs= Xeq/a^2
+
+disp("letra b)")
+Is= 8.7
+
+%FP=0.8 atrasado%
+Vs= 115
+Vp1= Vs+Zeq*(Is*cos(36.87*pi/180)-Is*sin(36.87*pi/180)*j)
+VR= ((abs(Vp1)-Vs)/Vs)*100
+
+%FP=01%
+Vs= 115
+Vp1= Vs+Zeq*Is
+VR= ((abs(Vp1)-Vs)/Vs)*100
+
+%fP= 0.8 adiantado%
+Vs= 115
+Vp1= Vs+Zeq*(Is*cos(36.87*pi/180)+Is*sin(36.87*pi/180)*j)
+VR= ((abs(Vp1)-Vs)/Vs)*100
+
+disp("letra c)")
+Po= Vs*Is*cos(teta)
+Pcu= Is^2*Reqs
+Pn= abs(Vp1)^2/3383
+n= (Po/(Po+Pcu+Pn))*100 %rendimento(%)
+
+ ------------------------------------------------------------------------------------------------------------------------
+QUESTÃO 11:
+
+disp("letra a)")
+Zl= 20+100j %ohms
+a= 8000/230 
+Zl1= a^2*(2+0.7j) %ohms
+Is1= 7967/(Zl+Zl1) %A
+Vs1= Is1*Zl1 %V
+Vs= Vs1/a %V
+Vr= ((7967-abs(Vs1))/abs(Vs1))*100 %regulação de tensão
+
+disp("letra b)")
+Zl1= a^2*(-3j)
+Is1= 7967/(Zl+Zl1) %A
+Vs1= Is1*Zl1 %V
+Vs= Vs1/a %V
+Vr= ((7967-abs(Vs1))/abs(Vs1))*100 %regulação de tensão
+----------------------------------------------------------------------------------------------------------------------------
+QUESTÃO 12:
+
+disp("letra a)")
+Ivz=21.1 %A
+Vvz= 13800 %V
+Pvz= 9800 %W
+Yexm= Ivz/Vvz 
+teta= acos((Pvz/(Ivz*Vvz))*pi/180) %angulo(°)
+Yex= Yexm*cos(teta)-Yexm*sin(teta)*j
+Rc= 2244 %ohms
+Xm= 737 %ohms
+Zb= 13800^2/5000000 %ohms
+Req= 0.01*Zb
+Xeq= 0.05*Zb
+
+disp("letra b)")
+Is= 4000000/(13800*0.8) %A
+Vp1= 13800+(Is*cos(36.87*pi/180)-Is*sin(36.87*pi/180)*j)+(0.38+1.9j)
+Vr= ((abs(Vp1)-13800)/13800)*100 
+Pcu= Is*Req %W
+Pn= abs(Vp1)^2/Rc  %W
+n= (4000000/(4000000+Pcu+Pn))*100 %rendimento(%)
